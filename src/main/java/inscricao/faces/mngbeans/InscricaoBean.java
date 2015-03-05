@@ -23,6 +23,7 @@ import utfpr.persistence.controller.JpaController;
 @ManagedBean
 @SessionScoped
 public class InscricaoBean extends PageBean {
+
     private Candidato candidato = new Candidato(new Idioma(1)); // inicialmente ingles
     private boolean linkGRUVisivel = false;
     private SimpleDateFormat formatDataVencto = new SimpleDateFormat("dd/MM/yyyy");
@@ -30,7 +31,7 @@ public class InscricaoBean extends PageBean {
     private boolean informativo;
     private boolean correio;
     private boolean email;
-    private int idioma=-1;
+    private int idioma = -1;
 
     public int getIdioma() {
         return idioma;
@@ -39,8 +40,11 @@ public class InscricaoBean extends PageBean {
     public void setIdioma(int idioma) {
         this.idioma = idioma;
     }
-    
-    
+
+    public String Filtro() {
+
+        return "tabelaCandidatos.xhtml";
+    }
 
     public Candidato getCandidato() {
         return candidato;
@@ -60,7 +64,7 @@ public class InscricaoBean extends PageBean {
             em.close();
         }
     }
-    
+
     public List<Idioma> getIdiomas() {
         List<Idioma> idiomas;
         try {
@@ -72,18 +76,18 @@ public class InscricaoBean extends PageBean {
         }
         return idiomas;
     }
-    
+
     public List<Candidato> getAllCadiIdioma() {
         List<Candidato> candidatos;
         try {
             CandidatoJpaController cc = new CandidatoJpaController();
-            if(idioma == -1){
+            if (idioma == -1) {
                 candidatos = cc.findAll();
-                
+
             } else {
-                candidatos  = cc.findByIdioma(idioma);
+                candidatos = cc.findByIdioma(idioma);
             }
-            
+
         } catch (Exception e) {
             candidatos = new ArrayList<>(0);
             log("Lista de candidatos", e);
@@ -114,32 +118,32 @@ public class InscricaoBean extends PageBean {
     public void setEmail(boolean email) {
         this.email = email;
     }
-    
+
     public boolean isLinkGRUVisivel() {
         return linkGRUVisivel;
     }
-    
+
     public String getDataVencimento() {
         GregorianCalendar hoje = new GregorianCalendar();
         hoje.add(Calendar.DAY_OF_MONTH, 1);
         return formatDataVencto.format(hoje.getTime());
     }
-    
+
     public String getCompetencia() {
         GregorianCalendar hoje = new GregorianCalendar();
         hoje.add(Calendar.DAY_OF_MONTH, 1);
         return formatCompetencia.format(hoje.getTime());
     }
-    
+
     public void informativoValueChangeListener(ValueChangeEvent event) {
         correio = false;
         email = false;
     }
-    
+
     public String inscricaoAction() {
         CandidatoJpaController cjc = new CandidatoJpaController();
         List<Candidato> cands = cjc.findByIdioma(new Idioma(1));
-        JpaController ctl = new JpaController();    
+        JpaController ctl = new JpaController();
         EntityManager em = ctl.getEntityManager();
         try {
             if (validaCandidato()) {
@@ -147,7 +151,7 @@ public class InscricaoBean extends PageBean {
                 em.persist(candidato);
                 em.getTransaction().commit();
                 info("Inscrição realizada com sucesso");
-                
+
                 return "listacandidatos";
             } else {
                 error("Este CPF já está inscrito");

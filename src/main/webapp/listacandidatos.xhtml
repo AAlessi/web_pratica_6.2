@@ -20,17 +20,18 @@
 
     <ui:define name="content">
         <ice:form>
-            <ice:panelGroup>
-                    <ice:outputLabel for="selCandi" value="SelecionaCandidadotos por Ididota, vazio para todos: "/>
-                    <ice:inputText id="selCandi" value="#{inscricaoBean.idioma}" size="80"
-                          styleClass="ui-inputfield" label="Candidatos/Idioma" maxlength="200" />
-                </ice:panelGroup>
-            
+
             <div class="titulo-form">Lista</div>
+            <ice:panelGroup>
+                <ice:outputLabel for="selCandi" value="Seleciona Candidatos por Idioma, -1 para todos: "/>
+                <ice:inputText id="selCandi" value="#{inscricaoBean.idioma}" size="80"
+                               styleClass="ui-inputfield" label="Candidatos/Idioma" maxlength="200" />
+            </ice:panelGroup>
+            <h:commandButton value="Aplicar filtro" action="#{inscricaoBean.aplicarFiltroAction}"/>
 
             <ace:dataTable  id="items"
                             value="#{inscricaoBean.allCadiIdioma}"
-                         var="item">
+                            var="item">
                 <ace:column id="cpf" headerText="CPF" >                  
                     <h:outputText value="#{item.cpf}"/>
                 </ace:column>
