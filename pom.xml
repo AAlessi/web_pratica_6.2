@@ -23,12 +23,12 @@
 
     <dependencies>
         <dependency>
-           <!-- necessário para não causar conflito com o hibernate-jpamodelgen -->
-           <groupId>org.jboss.spec</groupId>
-           <artifactId>jboss-javaee-6.0</artifactId>
-           <version>1.0.0.Final</version>
-           <type>pom</type>
-           <scope>provided</scope>
+            <!-- necessário para não causar conflito com o hibernate-jpamodelgen -->
+            <groupId>org.jboss.spec</groupId>
+            <artifactId>jboss-javaee-6.0</artifactId>
+            <version>1.0.0.Final</version>
+            <type>pom</type>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.sun.faces</groupId>
@@ -40,26 +40,26 @@
             <artifactId>jsf-impl</artifactId>
             <version>${jsf.version}</version>
         </dependency>
-<dependency>
-    <groupId>org.icefaces</groupId>
-    <artifactId>icefaces</artifactId>
-    <version>${icefaces.version}</version>
-</dependency>
-<dependency>
-    <groupId>org.icefaces</groupId>
-    <artifactId>icefaces-ace</artifactId>
-    <version>${icefaces.version}</version>
-</dependency>
-<dependency>
-    <groupId>org.icepush</groupId>
-    <artifactId>icepush</artifactId>
-    <version>${icefaces.version}</version>
-</dependency>
-<dependency>
-    <groupId>org.icefaces</groupId>
-    <artifactId>icefaces-compat</artifactId>
-    <version>${icefaces.version}</version>
-</dependency>
+        <dependency>
+            <groupId>org.icefaces</groupId>
+            <artifactId>icefaces</artifactId>
+            <version>${icefaces.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.icefaces</groupId>
+            <artifactId>icefaces-ace</artifactId>
+            <version>${icefaces.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.icepush</groupId>
+            <artifactId>icepush</artifactId>
+            <version>${icefaces.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.icefaces</groupId>
+            <artifactId>icefaces-compat</artifactId>
+            <version>${icefaces.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>junit</groupId>
@@ -93,6 +93,7 @@
             <type>jar</type>
         </dependency>
         <!-- Dependências do Hibernate JPA -->
+        
 
     </dependencies>
 

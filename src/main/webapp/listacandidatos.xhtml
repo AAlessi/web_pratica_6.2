@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ice="http://www.icesoft.com/icefaces/component"
+                xmlns:ace="http://www.icefaces.org/icefaces/components"
+                template="./WEB-INF/templates/layout.xhtml"
+                >
+
+    <ui:define name="styles">
+        <link href="./css/inscricao.css" rel="stylesheet" type="text/css" />
+    </ui:define>
+
+    <ui:define name="metadata">
+    </ui:define>
+
+    <ui:define name="javascript">
+    </ui:define>
+
+    <ui:define name="content">
+        <ice:form>
+            <ice:panelGroup>
+                    <ice:outputLabel for="selCandi" value="SelecionaCandidadotos por Ididota, vazio para todos: "/>
+                    <ice:inputText id="selCandi" value="#{inscricaoBean.idioma}" size="80"
+                          styleClass="ui-inputfield" label="Candidatos/Idioma" maxlength="200" />
+                </ice:panelGroup>
+            
+            <div class="titulo-form">Lista</div>
+
+            <ace:dataTable  id="items"
+                            value="#{inscricaoBean.allCadiIdioma}"
+                         var="item">
+                <ace:column id="cpf" headerText="CPF" >                  
+                    <h:outputText value="#{item.cpf}"/>
+                </ace:column>
+                <ace:column id="nome" headerText="Nome" >   
+                    <h:outputText value="#{item.nome}"/>
+                </ace:column>
+                <ace:column id="cidade" headerText="Cidade" >   
+                    <h:outputText value="#{item.cidade}"/>
+                </ace:column>
+                <ace:column id="estado" headerText="Estado" >   
+                    <h:outputText value="#{item.estado}"/>
+                </ace:column>
+            </ace:dataTable > 
+
+        </ice:form>
+    </ui:define>
+
+</ui:composition>

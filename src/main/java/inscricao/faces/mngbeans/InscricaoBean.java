@@ -30,6 +30,17 @@ public class InscricaoBean extends PageBean {
     private boolean informativo;
     private boolean correio;
     private boolean email;
+    private int idioma=-1;
+
+    public int getIdioma() {
+        return idioma;
+    }
+
+    public void setIdioma(int idioma) {
+        this.idioma = idioma;
+    }
+    
+    
 
     public Candidato getCandidato() {
         return candidato;
@@ -60,6 +71,24 @@ public class InscricaoBean extends PageBean {
             log("Lista de idiomas", e);
         }
         return idiomas;
+    }
+    
+    public List<Candidato> getAllCadiIdioma() {
+        List<Candidato> candidatos;
+        try {
+            CandidatoJpaController cc = new CandidatoJpaController();
+            if(idioma == -1){
+                candidatos = cc.findAll();
+                
+            } else {
+                candidatos  = cc.findByIdioma(idioma);
+            }
+            
+        } catch (Exception e) {
+            candidatos = new ArrayList<>(0);
+            log("Lista de candidatos", e);
+        }
+        return candidatos;
     }
 
     public boolean isInformativo() {
@@ -107,7 +136,7 @@ public class InscricaoBean extends PageBean {
         email = false;
     }
     
-    public void inscricaoAction() {
+    public String inscricaoAction() {
         CandidatoJpaController cjc = new CandidatoJpaController();
         List<Candidato> cands = cjc.findByIdioma(new Idioma(1));
         JpaController ctl = new JpaController();    
@@ -118,6 +147,8 @@ public class InscricaoBean extends PageBean {
                 em.persist(candidato);
                 em.getTransaction().commit();
                 info("Inscrição realizada com sucesso");
+                
+                return "listacandidatos";
             } else {
                 error("Este CPF já está inscrito");
             }
@@ -128,5 +159,6 @@ public class InscricaoBean extends PageBean {
         } finally {
             em.close();
         }
+        return null;
     }
 }
